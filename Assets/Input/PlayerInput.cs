@@ -164,7 +164,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Yeet"",
+                    ""name"": ""Beat"",
                     ""type"": ""Button"",
                     ""id"": ""82ad1768-3bb4-400d-8551-e4a344555e86"",
                     ""expectedControlType"": ""Button"",
@@ -177,7 +177,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3cb5ffa6-453b-4739-8ada-70f552bd76b0"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -199,11 +199,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5b2f1d87-967a-4db2-ad61-ad2e2d1ba9c2"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Yeet"",
+                    ""action"": ""Beat"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -214,7 +214,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Yeet"",
+                    ""action"": ""Beat"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -229,7 +229,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // InteractionMap
         m_InteractionMap = asset.FindActionMap("InteractionMap", throwIfNotFound: true);
         m_InteractionMap_Interact = m_InteractionMap.FindAction("Interact", throwIfNotFound: true);
-        m_InteractionMap_Yeet = m_InteractionMap.FindAction("Yeet", throwIfNotFound: true);
+        m_InteractionMap_Beat = m_InteractionMap.FindAction("Beat", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -338,13 +338,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_InteractionMap;
     private List<IInteractionMapActions> m_InteractionMapActionsCallbackInterfaces = new List<IInteractionMapActions>();
     private readonly InputAction m_InteractionMap_Interact;
-    private readonly InputAction m_InteractionMap_Yeet;
+    private readonly InputAction m_InteractionMap_Beat;
     public struct InteractionMapActions
     {
         private @PlayerInput m_Wrapper;
         public InteractionMapActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Interact => m_Wrapper.m_InteractionMap_Interact;
-        public InputAction @Yeet => m_Wrapper.m_InteractionMap_Yeet;
+        public InputAction @Beat => m_Wrapper.m_InteractionMap_Beat;
         public InputActionMap Get() { return m_Wrapper.m_InteractionMap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -357,9 +357,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
-            @Yeet.started += instance.OnYeet;
-            @Yeet.performed += instance.OnYeet;
-            @Yeet.canceled += instance.OnYeet;
+            @Beat.started += instance.OnBeat;
+            @Beat.performed += instance.OnBeat;
+            @Beat.canceled += instance.OnBeat;
         }
 
         private void UnregisterCallbacks(IInteractionMapActions instance)
@@ -367,9 +367,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
-            @Yeet.started -= instance.OnYeet;
-            @Yeet.performed -= instance.OnYeet;
-            @Yeet.canceled -= instance.OnYeet;
+            @Beat.started -= instance.OnBeat;
+            @Beat.performed -= instance.OnBeat;
+            @Beat.canceled -= instance.OnBeat;
         }
 
         public void RemoveCallbacks(IInteractionMapActions instance)
@@ -394,6 +394,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface IInteractionMapActions
     {
         void OnInteract(InputAction.CallbackContext context);
-        void OnYeet(InputAction.CallbackContext context);
+        void OnBeat(InputAction.CallbackContext context);
     }
 }
