@@ -30,30 +30,28 @@ public class Boat : MonoBehaviour
         if (transform.childCount > 0) {
             // calc the avg X-Z position of all children
             float totalPositionX = 0f;
+            float totalPositionZ = 0f;
+            float testWeight = 1.5f;
+            float individualWeightX = 0f;
+            float individualWeightZ = 0f;
             for (int i = 0; i < transform.childCount; ++i) {
-                Vector3 childPosition = transform.GetChild(i).localPosition;
-                float testWeight = 1.5f;
+                Vector3 childPosition = transform.GetChild(i).localPosition; 
                 //calc individual weights (how much to rotate)
-                float individualWeight = childPosition.x * testWeight;
+                individualWeightX = childPosition.x * testWeight;
+                individualWeightZ = childPosition.z * testWeight;
 
-                totalPositionX += individualWeight;
+                totalPositionX += individualWeightX;
+                totalPositionZ += individualWeightZ;
             }
-            currentRotation = currentRotation - new Vector3(0f, 0f, totalPositionX) * Time.deltaTime * rotationSpeed;
+            currentRotation = currentRotation + new Vector3(totalPositionZ, 0f, -totalPositionX) * Time.deltaTime * rotationSpeed;
             currentRotation = new Vector3(currentRotation.x % 360, currentRotation.y % 360, currentRotation.z % 360);
-            Debug.Log(currentRotation);
 
             //overall rotation
-            currentRotation.z = Mathf.Clamp(currentRotation.z, -clampRotationZ, clampRotationZ);
+            currentRotation.z = Mathf.Clamp(currentRotation.z, -clampRotationZ, clampRotationZ);    // rotation around the Z is based on x coords and vice versa
+            currentRotation.x = Mathf.Clamp(currentRotation.x, -clampRotationZ, clampRotationZ);
             transform.eulerAngles = currentRotation;
-
-            //PositionX /= transform.childCount;
-
-            //// calc rotation angle based on the avg
-            //float angle = Mathf.Atan2(averagePositionXZ.y, averagePositionXZ.x) * Mathf.Rad2Deg;
         }
-
-        // transform .Euler angle rotation
-        // set completely tilted/not completely tiled?
-        // interpolate using vector 3 to rotate --> move towards and set Euler angle to that value
     }
+
+    // lerp animation curve
 }
