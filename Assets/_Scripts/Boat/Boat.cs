@@ -52,6 +52,5 @@ public class Boat : MonoBehaviour
             transform.eulerAngles = currentRotation;
         }
     }
-
     // lerp animation curve
 }
