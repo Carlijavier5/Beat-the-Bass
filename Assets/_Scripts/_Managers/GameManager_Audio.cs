@@ -12,6 +12,7 @@ public partial class GameManager {
 
 	/// Declaring Audio Sources for music and sfx;
 	[SerializeField] private AudioSource mainMusicSource;
+	[SerializeField] private AudioSource secondaryMusicSource;
 	[SerializeField] private AudioSource sfxSource;
 	/// Declaring arrays for audio files;
 	/// The files must be assigned in the inspector;
@@ -102,6 +103,37 @@ public partial class GameManager {
 	}
 
 	public void ResumeMusic() => StartCoroutine(_ResumeMusic());
+
+	public void InterpolateMusicTracks(string name, bool shouldLoop = true) {
+		StopAllCoroutines();
+		AudioClip clip = FetchClip(name, musicSounds);
+		StartCoroutine(_InterpolateMusicTracks(clip, shouldLoop));
+	}
+
+	IEnumerator _InterpolateMusicTracks(AudioClip newTrack, bool nextLoop) {
+		float lerp = 1;
+		SetUpSecondaryMusicClip(newTrack);
+		while (lerp > 0) {
+			mainMusicSource.volume = musicVolume * lerp;
+			secondaryMusicSource.volume = musicVolume * (1 - lerp);
+			lerp = Mathf.MoveTowards(lerp, 0, volumeChangeRate);
+			yield return null;
+		} SwapPrimaryMusicSource(nextLoop);
+	}
+
+	private void SetUpSecondaryMusicClip(AudioClip newTrack) {
+		secondaryMusicSource.clip = newTrack;
+		secondaryMusicSource.time = mainMusicSource.time;
+		secondaryMusicSource.Play();
+	}
+
+	private void SwapPrimaryMusicSource(bool shouldLoop) {
+		AudioSource oldSource = mainMusicSource;
+		mainMusicSource = secondaryMusicSource;
+		mainMusicSource.loop = shouldLoop;
+		secondaryMusicSource = oldSource;
+		secondaryMusicSource.Stop();
+	}
 
 	/// <summary>
 	/// Coroutine to fade away the music. Hopefully more efficient than running a bool in Update;
