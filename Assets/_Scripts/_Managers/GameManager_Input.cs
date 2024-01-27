@@ -4,13 +4,14 @@ using UnityEngine;
 
 public partial class GameManager {
     public class InputManager {
-        private readonly PlayerInput inputMap;
-        public Vector2 MoveVector => inputMap.MovementMap.Move.ReadValue<Vector2>();
+        public PlayerInput InputMap { get; private set; }
+        public Vector2 MoveVector => InputMap.MovementMap.Move.ReadValue<Vector2>();
         public event System.Action OnInteraction;
         public event System.Action OnBeat;
 
         public InputManager(PlayerInput inputMap) {
-            this.inputMap = inputMap;
+            InputMap = inputMap;
+            InputMap.MenuInput.Enable();
             ToggleMovement(true);
             ToggleInteraction(true);
             inputMap.InteractionMap.Interact.performed += (callback) => OnInteraction?.Invoke();
@@ -18,13 +19,13 @@ public partial class GameManager {
         }
 
         public void ToggleMovement(bool toggle) {
-            if (toggle) inputMap.MovementMap.Enable();
-            else inputMap.MovementMap.Disable();
+            if (toggle) InputMap.MovementMap.Enable();
+            else InputMap.MovementMap.Disable();
         }
 
         public void ToggleInteraction(bool toggle) {
-            if (toggle) inputMap.InteractionMap.Enable();
-            else inputMap.InteractionMap.Disable();
+            if (toggle) InputMap.InteractionMap.Enable();
+            else InputMap.InteractionMap.Disable();
         }
     } public InputManager Input { get; private set; }
 }
