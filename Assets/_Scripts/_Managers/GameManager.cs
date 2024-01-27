@@ -13,5 +13,6 @@ public partial class GameManager : NetworkBehaviour {
             instance = this;
             DontDestroyOnLoad(this);
         } else Destroy(gameObject);
+        Input = new(new PlayerInput());
     }
 }
