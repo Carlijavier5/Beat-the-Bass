@@ -7,40 +7,33 @@ using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Entity : NetworkBehaviour {
-    [Range(0f, 1f)] [SerializeField] private float dragConstant;
+    #region Physics
+    [Range(0f, 10f)] [SerializeField] private float dragConstant; //TODO: REPLACE WITH BOAT DRAG CONSTANT
+    
+    private float drag;
+    protected Rigidbody rigidbody;
+    #endregion Physics
     
     public EntityData data;
 
-    [SerializeField] private Vector3 floatAdditive;
+    [SerializeField] private Vector3 floatAdditive; //TODO: REPLACE WITH BOAT TRANSLATE
     
-    private Vector3 totalForce = Vector3.zero;
-    private const float ForceClampApproximation = 0.0001f;
-    
-    private void Awake() {
+    protected virtual void Awake() {
+        drag = dragConstant * data.weight;
+        rigidbody = GetComponent<Rigidbody>();
+        rigidbody.useGravity = false;
+        rigidbody.drag = drag;
         //dragConstant = GetComponentInParent<Boat>();
         //TODO: Set drag constant
     }
 
-    public void AddForce(Vector3 direction) {
-        totalForce += direction;
+    protected virtual void FixedUpdate() {
+        Translate(floatAdditive);
     }
 
-    private void FixedUpdate() {
-        AddForce(floatAdditive);
-        totalForce *= dragConstant;
-        ApproximateForce();
-        Debug.Log(totalForce);
-        Translate();
-    }
-
-    private void Translate() {
-        transform.position += totalForce;
-    }
-
-    private void ApproximateForce() {
-        if (totalForce.magnitude < ForceClampApproximation) {
-            totalForce = Vector3.zero;
-        }
+    private void Translate(Vector3 direction) {
+        rigidbody.AddRelativeForce(direction);
     }
 }
