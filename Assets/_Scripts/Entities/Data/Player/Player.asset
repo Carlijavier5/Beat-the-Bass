@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   displayName: 
-  weight: 0
-  moveSpeed: 5
+  weight: 0.72
+  moveSpeed: 63
