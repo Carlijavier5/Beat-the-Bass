@@ -17,7 +17,9 @@ public class PlayerEntity : Entity {
     }
 
     private void HandleInput(/*Vector2 input*/) {
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical")) * playerData.moveSpeed;
+        Vector2 input = GameManager.Instance.Input.MoveVector;
+        Vector3 direction = new Vector3(input.x, 0f, input.y) * playerData.moveSpeed;
+        Debug.Log(direction.ToString());
         rigidbody.AddRelativeForce(direction);
     }
 }
