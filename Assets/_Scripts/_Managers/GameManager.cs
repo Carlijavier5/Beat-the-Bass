@@ -14,5 +14,6 @@ public partial class GameManager : MonoBehaviour {
             DontDestroyOnLoad(this);
         } else Destroy(gameObject);
         Input = new(new PlayerInput());
+        InitTransition();
     }
 }

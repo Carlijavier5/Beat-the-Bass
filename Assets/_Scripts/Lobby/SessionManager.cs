@@ -12,7 +12,8 @@ public class SessionManager : NetworkBehaviour {
         if (!IsHost) {
             Destroy(gameObject);
             return;
-        } NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_OnClientConnectedCallback;
+        }
+        NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_OnClientConnectedCallback;
         NetworkManager.Singleton.OnClientDisconnectCallback += Singleton_OnClientDisconnectCallback;
     }
 
