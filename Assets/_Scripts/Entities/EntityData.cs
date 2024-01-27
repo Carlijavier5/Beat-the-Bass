@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Entity Data/Base Entity")]
 public class EntityData : ScriptableObject
 {
     [Header("Entity Details")]
-    [SerializeField] private string displayName = "";
+    public string displayName = "";
 
-    [SerializeField] private float weight;
+    [Range(0f, 3f)] public float weight;
 }
