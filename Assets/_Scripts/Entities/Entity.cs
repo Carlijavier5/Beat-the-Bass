@@ -13,14 +13,14 @@ public class Entity : NetworkBehaviour {
     [Range(0f, 10f)] [SerializeField] private float dragConstant; //TODO: REPLACE WITH BOAT DRAG CONSTANT
     
     private float drag;
-    private Rigidbody rigidbody;
+    protected Rigidbody rigidbody;
     #endregion Physics
     
     public EntityData data;
 
     [SerializeField] private Vector3 floatAdditive; //TODO: REPLACE WITH BOAT TRANSLATE
     
-    private void Awake() {
+    protected virtual void Awake() {
         drag = dragConstant * data.weight;
         rigidbody = GetComponent<Rigidbody>();
         rigidbody.useGravity = false;
@@ -29,7 +29,7 @@ public class Entity : NetworkBehaviour {
         //TODO: Set drag constant
     }
 
-    private void FixedUpdate() {
+    protected virtual void FixedUpdate() {
         Translate(floatAdditive);
     }
 
