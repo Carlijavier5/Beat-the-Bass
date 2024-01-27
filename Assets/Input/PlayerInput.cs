@@ -219,6 +219,34 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""MenuInput"",
+            ""id"": ""63cae577-b7c5-474b-ae08-7dce9a38ad33"",
+            ""actions"": [
+                {
+                    ""name"": ""StartGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""f614cb1c-5e6b-49b4-8f47-cbb34855e9cb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""17b66602-c48b-4bf0-9799-ef8e351bd7a5"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -230,6 +258,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_InteractionMap = asset.FindActionMap("InteractionMap", throwIfNotFound: true);
         m_InteractionMap_Interact = m_InteractionMap.FindAction("Interact", throwIfNotFound: true);
         m_InteractionMap_Beat = m_InteractionMap.FindAction("Beat", throwIfNotFound: true);
+        // MenuInput
+        m_MenuInput = asset.FindActionMap("MenuInput", throwIfNotFound: true);
+        m_MenuInput_StartGame = m_MenuInput.FindAction("StartGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -387,6 +418,52 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public InteractionMapActions @InteractionMap => new InteractionMapActions(this);
+
+    // MenuInput
+    private readonly InputActionMap m_MenuInput;
+    private List<IMenuInputActions> m_MenuInputActionsCallbackInterfaces = new List<IMenuInputActions>();
+    private readonly InputAction m_MenuInput_StartGame;
+    public struct MenuInputActions
+    {
+        private @PlayerInput m_Wrapper;
+        public MenuInputActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @StartGame => m_Wrapper.m_MenuInput_StartGame;
+        public InputActionMap Get() { return m_Wrapper.m_MenuInput; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MenuInputActions set) { return set.Get(); }
+        public void AddCallbacks(IMenuInputActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MenuInputActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MenuInputActionsCallbackInterfaces.Add(instance);
+            @StartGame.started += instance.OnStartGame;
+            @StartGame.performed += instance.OnStartGame;
+            @StartGame.canceled += instance.OnStartGame;
+        }
+
+        private void UnregisterCallbacks(IMenuInputActions instance)
+        {
+            @StartGame.started -= instance.OnStartGame;
+            @StartGame.performed -= instance.OnStartGame;
+            @StartGame.canceled -= instance.OnStartGame;
+        }
+
+        public void RemoveCallbacks(IMenuInputActions instance)
+        {
+            if (m_Wrapper.m_MenuInputActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMenuInputActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MenuInputActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MenuInputActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MenuInputActions @MenuInput => new MenuInputActions(this);
     public interface IMovementMapActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -395,5 +472,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnInteract(InputAction.CallbackContext context);
         void OnBeat(InputAction.CallbackContext context);
+    }
+    public interface IMenuInputActions
+    {
+        void OnStartGame(InputAction.CallbackContext context);
     }
 }
