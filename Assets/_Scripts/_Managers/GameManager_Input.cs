@@ -5,13 +5,12 @@ using UnityEngine;
 public partial class GameManager {
     public class InputManager {
         private readonly PlayerInput inputMap;
-        public event System.Action<Vector2> OnMove;
+        public Vector2 MoveVector => inputMap.MovementMap.Move.ReadValue<Vector2>();
         public event System.Action OnInteraction;
         public event System.Action OnBeat;
 
         public InputManager(PlayerInput inputMap) {
             this.inputMap = inputMap;
-            inputMap.MovementMap.Move.performed += (dir) => OnMove?.Invoke(dir.ReadValue<Vector2>());
             inputMap.InteractionMap.Interact.performed += (callback) => OnInteraction?.Invoke();
             inputMap.InteractionMap.Beat.performed += (callback) => OnBeat?.Invoke();
         }
