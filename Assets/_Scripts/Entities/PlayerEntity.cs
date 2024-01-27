@@ -14,7 +14,6 @@ public class PlayerEntity : Entity {
     protected override void FixedUpdate() {
         base.FixedUpdate();
         HandleInput();
-        
     }
 
     private void HandleInput(/*Vector2 input*/) {
