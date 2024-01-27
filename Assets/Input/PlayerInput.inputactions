@@ -142,7 +142,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Yeet",
+                    "name": "Beat",
                     "type": "Button",
                     "id": "82ad1768-3bb4-400d-8551-e4a344555e86",
                     "expectedControlType": "Button",
@@ -155,7 +155,7 @@
                 {
                     "name": "",
                     "id": "3cb5ffa6-453b-4739-8ada-70f552bd76b0",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -177,11 +177,11 @@
                 {
                     "name": "",
                     "id": "5b2f1d87-967a-4db2-ad61-ad2e2d1ba9c2",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Yeet",
+                    "action": "Beat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -192,7 +192,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Yeet",
+                    "action": "Beat",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
