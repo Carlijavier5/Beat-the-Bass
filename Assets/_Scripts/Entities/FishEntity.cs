@@ -44,6 +44,7 @@ public class FishEntity : Entity
     }
 
     public float getSpawnProbability() {
+        if (fishData == null) fishData = (FishData) data;
         return fishData.spawnChance;
     }
 

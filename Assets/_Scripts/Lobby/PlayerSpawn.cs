@@ -25,7 +25,7 @@ public class PlayerSpawn : NetworkBehaviour {
     public void InitializePlayer() {
         if (PlayerNO == null) return;
         PlayerNO.transform.position = shipSpawn.position;
-        PlayerNO.transform.SetParent(shipSpawn);
+        PlayerNO.transform.SetParent(shipSpawn.GetComponentInParent<Boat>().transform);
         GameManager.Instance.Input.ToggleMovement(true);
         GameManager.Instance.Input.ToggleInteraction(true);
         Destroy(gameObject);
