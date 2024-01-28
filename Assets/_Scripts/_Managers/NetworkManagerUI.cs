@@ -37,7 +37,7 @@ public class NetworkManagerUI : MonoBehaviour {
         Ease ease = toggle ? Ease.OutBounce : Ease.OutQuad;
         float duration = toggle ? 0.75f : 0.35f;
         clientBtn.transform.DOScale(toggle ? 1 : 0, duration).SetEase(ease);
-        ipField.transform.DOScale(toggle ? 1 : 0, duration).SetEase(ease);
+        ipField.transform.DOScale(toggle ? 1.5f : 0, duration).SetEase(ease);
         yield return new WaitForSeconds(0.2f);
         hostBtn.transform.DOScale(toggle ? 1 : 0, duration).SetEase(ease);
         yield return new WaitForSeconds(0.2f);
