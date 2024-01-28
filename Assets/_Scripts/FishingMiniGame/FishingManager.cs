@@ -18,10 +18,12 @@ public class FishingManager : MonoBehaviour
     private float bottomCord;
     private float topCord;
 
-    // events
+    private SpawnFish spawnFishScript;
 
     void Start()
     {
+        spawnFishScript = GetComponent<SpawnFish>();
+
         GameManager.Instance.Input.OnBeat += OnMouseClick;
         parentRectTransform = container.GetComponentInParent<RectTransform>();
         halfParentHeight = parentRectTransform.rect.height / 2.0f;
@@ -42,17 +44,20 @@ public class FishingManager : MonoBehaviour
         }
 
         if (level > 3) {
-            this.gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
             Debug.Log("Game Won");
             // spawn fish n shit
+            spawnFishScript.SpawnAFish();
+
+            // reset the game to TEST
+            level = 1;
+            SpawnGreenArea();
         }
     }
 
     void Update()
     {
         MoveBobber();
-
-        Debug.Log(bottomCord + " " + topCord);
     }
 
     private void MoveBobber() {
