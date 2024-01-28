@@ -21,6 +21,6 @@ public class PlayerEntity : Entity {
         Vector2 input = GameManager.Instance.Input.MoveVector;
         Vector3 direction = new Vector3(input.x, 0f, input.y) * playerData.moveSpeed;
         Debug.Log(direction);
-        rb.AddRelativeForce(direction);
+        Translate(direction);
     }
 }

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b588798ce0bf43349b6bab0077e344e3, type: 3}
   m_Name: GlobalData
   m_EditorClassIdentifier: 
-  drag: 0
+  drag: 3
