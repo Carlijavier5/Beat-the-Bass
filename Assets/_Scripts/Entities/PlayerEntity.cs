@@ -8,7 +8,7 @@ public class PlayerEntity : Entity {
     [SerializeField] private Transform modelTransform;
     private Vector3 prevPos;
 
-    private PlayerData playerData;
+    private PlayerData playerData; 
     void Awake() {
         playerData = (PlayerData) Data;
         rb = GetComponent<Rigidbody>();

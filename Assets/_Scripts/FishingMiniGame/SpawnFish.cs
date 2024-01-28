@@ -7,6 +7,8 @@ public class SpawnFish : MonoBehaviour
     public GameObject[] fishPrefabs;
     public Transform spawnPoint;
 
+    [SerializeField] private float spawnRadius = 0f;
+
     void Start() {
     }
 
@@ -14,7 +16,12 @@ public class SpawnFish : MonoBehaviour
         float randValue = Random.Range(0, 1);
         GameObject fishToSpawn = ChooseRandFish(randValue);
 
-        if (fishToSpawn != null ) { Instantiate(fishToSpawn, spawnPoint.position, Quaternion.identity);  }
+        // Generate a random position within the spawn radius
+        Vector3 randomSpawnPosition = Random.insideUnitCircle * spawnRadius;
+        randomSpawnPosition.z = randomSpawnPosition.y;
+        Vector3 finalSpawnPosition = spawnPoint.position + randomSpawnPosition;
+
+        if (fishToSpawn != null ) { Instantiate(fishToSpawn, finalSpawnPosition, Quaternion.identity);  }
 
     }
 
