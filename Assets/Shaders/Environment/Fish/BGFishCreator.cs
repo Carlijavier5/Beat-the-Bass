@@ -25,7 +25,6 @@ public class BGFishCreator : MonoBehaviour {
     private IEnumerator SpawnFishAction() {
         Vector3 localPos = transform.position;
         Vector3 spawnPos = localPos + new Vector3(Random.Range(-width + 1, width), 0f, Random.Range(-height + 1, height));
-        Debug.Log(spawnPos.ToString());
         int index = Random.Range(0, fishPool.Count);
         GameObject fish = Instantiate(fishPool[index].gameObject, spawnPos, Quaternion.identity);
         Destroy(fish, destroyDelay);
