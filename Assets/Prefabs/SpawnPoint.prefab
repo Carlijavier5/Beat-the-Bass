@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 5180442378509949336}
   - component: {fileID: 7578159614086388481}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: Selector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2484118593181555139
 Transform:
   m_ObjectHideFlags: 0
@@ -98,7 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe184b08ae20ce47b31ff5585495270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 0.1
+  speed: 4
+  amplitude: 0.2
 --- !u!1 &4851475135586109345
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,3 +253,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 506171384173638350, guid: 9be9fa12bcef11645828d967f274098b,
     type: 3}
+  selector: {fileID: 7578159614086388481}
+  shipSpawn: {fileID: 0}

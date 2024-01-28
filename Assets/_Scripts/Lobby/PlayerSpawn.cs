@@ -2,12 +2,13 @@
 using UnityEngine;
 
 public class PlayerSpawn : NetworkBehaviour {
-    public event System.Action<bool> OnSpawnToggle;
 
     [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private LobbySelector selector;
     //[SerializeField] private ColorPanel colorPanel;
+    [SerializeField] private Transform shipSpawn;
+
     public NetworkObject PlayerNO { get; private set; }
-    private bool isHost;
 
     public override void OnNetworkSpawn() {
         NetworkObject.CheckObjectVisibility = (clientID) => true;
@@ -21,11 +22,25 @@ public class PlayerSpawn : NetworkBehaviour {
         PlayerNO.ChangeOwnership(clientID);
     }
 
-    public void Init() => OnSpawnToggle?.Invoke(true);
+    public void InitializePlayer() {
+        if (PlayerNO == null) return;
+        PlayerNO.transform.position = shipSpawn.position;
+        PlayerNO.transform.SetParent(shipSpawn);
+        GameManager.Instance.Input.ToggleMovement(true);
+        GameManager.Instance.Input.ToggleInteraction(true);
+        Destroy(gameObject);
+    }
+
+    public override void OnGainedOwnership() {
+        if (!IsOwner) return;
+        selector.gameObject.SetActive(true);
+    }
+    public override void OnLostOwnership() {
+        selector.gameObject.SetActive(false);
+    }
 
     public void Dispose() {
         Destroy(PlayerNO);
         NetworkObject.RemoveOwnership();
-        OnSpawnToggle?.Invoke(false);
     }
 }
