@@ -56,9 +56,4 @@ public class FishEntity : Entity
         isPickedUp = false;
         this.transform.SetParent(null);
     }
-
-    public override void Ragdoll() {
-        base.Ragdoll();
-        Destroy(gameObject, 5);
-    }
 }
