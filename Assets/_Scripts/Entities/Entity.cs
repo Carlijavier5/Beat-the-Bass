@@ -18,7 +18,7 @@ public class Entity : NetworkBehaviour {
     
     public EntityData data;
 
-    [SerializeField] private Vector3 floatAdditive; //TODO: REPLACE WITH BOAT TRANSLATE
+    [SerializeField] Boat boat;
     
     protected virtual void Awake() {
         drag = dragConstant * data.weight;
@@ -30,7 +30,7 @@ public class Entity : NetworkBehaviour {
     }
 
     protected virtual void FixedUpdate() {
-        Translate(floatAdditive);
+        Translate(boat.GetCurrentEulers());
     }
 
     private void Translate(Vector3 direction) {
