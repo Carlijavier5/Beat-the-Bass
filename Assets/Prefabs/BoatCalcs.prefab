@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 7451104609695065084}
   - component: {fileID: 8278340657507940503}
   - component: {fileID: 8535341386991156085}
-  - component: {fileID: 1612142024656503677}
   - component: {fileID: 6603245395464084079}
+  - component: {fileID: 1612142024656503677}
   - component: {fileID: 6138083147431048744}
   - component: {fileID: 9020594571722079697}
   m_Layer: 0
@@ -110,20 +110,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1612142024656503677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7009495512887118050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f765b6ed0090be4c96f159ef1592165, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragInstance: 0
-  currentRotation: {x: 0, y: 0, z: 0}
 --- !u!114 &6603245395464084079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +130,29 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 1
   AutoObjectParentSync: 1
+--- !u!114 &1612142024656503677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7009495512887118050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f765b6ed0090be4c96f159ef1592165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: {x: 0, y: 0}
+  angularStabilitySpeed: 0
+  rotationEndpoints: {x: 0, y: 0}
+  stabilityPoint: {x: 0, y: 0, z: 0}
+  objectsOnBoat: []
+  moveCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &6138083147431048744
 MonoBehaviour:
   m_ObjectHideFlags: 0

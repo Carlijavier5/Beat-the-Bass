@@ -28,7 +28,8 @@ public partial class GameManager {
         while (canvasGroup.alpha != goTo) {
             canvasGroup.alpha = Mathf.MoveTowards(canvasGroup.alpha, goTo, transitionRate * Mathf.Min(0.1f, Time.unscaledDeltaTime));
             yield return null;
-        } canvasGroup.interactable = goTo > 0 ? true : false;
+        } yield return new WaitForSeconds(0.5f);
+        canvasGroup.interactable = goTo > 0 ? true : false;
         canvasGroup.blocksRaycasts = goTo > 0 ? true : false;
         OnFadeEnd?.Invoke();
     }

@@ -7,9 +7,10 @@ public class FishEntity : Entity
     private FishData fishData;
     private float timer = 0.0f;
 
+    private bool fishIsMoving = true;
+
     void Awake() {
         fishData = (FishData) data;
-        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate() {
@@ -19,22 +20,33 @@ public class FishEntity : Entity
     void Update() {
         timer += Time.deltaTime;
 
-        if (timer >= fishData.moveInterval) {
+        if (timer >= fishData.moveInterval && fishIsMoving) {
             MoveFish();
             timer = 0.0f;
         }
     }
 
     private void MoveFish() {
+        Debug.Log("moved");
         Vector3 randDirection = Random.onUnitSphere;
         randDirection.y = 0;
 
         Vector3 localDirection = transform.TransformDirection(randDirection);
+
         rb.AddRelativeForce(localDirection * fishData.flopMagnitude, ForceMode.Impulse);
     }
 
-    public float getFlopTime() {
+    public int getFlopTime() {
         return fishData.flopTime;
+    }
+
+    public void StopFlop() {
+        fishIsMoving = false;
+    }
+
+    public float getSpawnProbability() {
+        if (fishData == null) fishData = (FishData) data;
+        return fishData.spawnChance;
     }
 
     // get direction between two points

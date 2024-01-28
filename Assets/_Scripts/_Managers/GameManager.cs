@@ -11,7 +11,6 @@ public partial class GameManager : MonoBehaviour {
     void Awake() {
         if (instance == null) {
             instance = this;
-            DontDestroyOnLoad(this);
         } else Destroy(gameObject);
         Input = new(new PlayerInput());
         InitTransition();
