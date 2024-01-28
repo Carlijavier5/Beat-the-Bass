@@ -4,43 +4,62 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boat : MonoBehaviour {
-    [SerializeField] private float dragInstance = 0f;
-    public float getDragInstance() { return dragInstance; }
 
-    private float rotationSpeed = 100f;
-    public Vector3 targetRotation;
-    private Vector3 originalEulers;
+    [SerializeField] private Vector2 maxDistance;
+    [SerializeField] private float angularStabilitySpeed;
+    [SerializeField] private Vector2 rotationEndpoints;
+    [SerializeField] private Vector3 stabilityPoint;
 
-    private float clampRotationAroundZ = 30f;
-    private float clampRotationAroundX = 30f;
+    private Vector3 angularSpeed;
+   /// private float rotationSpeed = 100f;
+    ///public Vector3 targetRotation;
+    /// Vector3 originalEulers;
 
-    private List<Entity> objectsOnBoat = new();
+    //private float clampRotationAroundZ = 30f;
+    //private float clampRotationAroundX = 30f;
+
+    [SerializeField] private List<Entity> objectsOnBoat = new();
 
     public AnimationCurve moveCurve;
-    private float animationTimePosition;
-
+    //private float animationTimePosition;
+    /*
     void Start() {
         originalEulers = transform.eulerAngles;
-    }
+    }*/
 
     void FixedUpdate() {
         RotateBoat();
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.gameObject.GetComponent<Entity>() != null) {
-            objectsOnBoat.Add(other.gameObject.GetComponent<Entity>());
-        }
-        Debug.Log("added object");
+        Entity entity = other.gameObject.GetComponent<Entity>();
+        if (entity != null) objectsOnBoat.Add(entity);
     }
 
     private void OnTriggerExit(Collider other) {
-        if (other.gameObject.GetComponent<Entity>() != null) {
-            objectsOnBoat.Remove(other.gameObject.GetComponent<Entity>());
-        }
-        Debug.Log("object removed");
+        Entity entity = other.gameObject.GetComponent<Entity>();
+        if (entity != null) objectsOnBoat.Remove(entity);
+    }
+    
+    private void RotateBoat() {
+        Vector2 weightedDist = Vector2.zero;
+        foreach (Entity entity in objectsOnBoat) {
+            weightedDist.x += (entity.transform.localPosition.z / maxDistance.y) * entity.Data.weight;
+            weightedDist.y += (entity.transform.localPosition.x / maxDistance.x) * entity.Data.weight;
+        } Vector2 rotationSpeed = ComputeTiltTolerance(weightedDist);
+        rotationSpeed = new Vector2(Mathf.Abs(rotationSpeed.x) * Mathf.Sign(weightedDist.x), Mathf.Abs(rotationSpeed.y) * Mathf.Sign(weightedDist.y));
+        stabilityPoint = new Vector3(Mathf.MoveTowards(transform.rotation.x, rotationEndpoints.x * Mathf.Sign(rotationSpeed.x), rotationSpeed.x),
+                                     transform.eulerAngles.y,
+                                     Mathf.MoveTowards(transform.rotation.z, rotationEndpoints.y * Mathf.Sign(rotationSpeed.y), rotationSpeed.y));
+        transform.eulerAngles = Vector3.SmoothDamp(transform.eulerAngles, stabilityPoint, ref angularSpeed, 1);
     }
 
+    private Vector2 ComputeTiltTolerance(Vector2 weightedDist) {
+        return new Vector2(Mathf.Abs(weightedDist.x) * angularStabilitySpeed * Mathf.Max(0.1f, moveCurve.Evaluate(Mathf.Abs(stabilityPoint.x / rotationEndpoints.x))),
+                           Mathf.Abs(weightedDist.y) * angularStabilitySpeed * Mathf.Max(0.1f, moveCurve.Evaluate(Mathf.Abs(stabilityPoint.z / rotationEndpoints.y))));
+    }
+
+    /*
     // based on child coords rotate the boat
     private void RotateBoat() {
         // check if there are children
@@ -53,7 +72,7 @@ public class Boat : MonoBehaviour {
             for (int i = 0; i < objectsOnBoat.Count; ++i) {
                 Vector3 objectPosition = objectsOnBoat[i].transform.localPosition; 
                 //calc individual weights (how much to rotate)
-                individualWeightX = objectPosition.x * objectsOnBoat[i].data.weight;
+                individualWeightX = objectPosition.x * objectsOnBoat[i].Data.weight;
                 //individualWeightZ = objectPosition.z * objectsOnBoat[i].data.weight;
 
                 totalPositionX += individualWeightX;
@@ -101,5 +120,5 @@ public class Boat : MonoBehaviour {
 
     public Vector3 GetCurrentEulers() {
         return transform.eulerAngles;
-    }
+    }*/
 }
