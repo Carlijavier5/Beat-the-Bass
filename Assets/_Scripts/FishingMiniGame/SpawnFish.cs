@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class SpawnFish : MonoBehaviour
+public class SpawnFish : NetworkBehaviour
 {
+    [SerializeField] private Transform boat;
     public GameObject[] fishPrefabs;
     public Transform spawnPoint;
 
@@ -13,16 +15,19 @@ public class SpawnFish : MonoBehaviour
     }
 
     public void SpawnAFish() {
-        float randValue = Random.Range(0, 1);
-        GameObject fishToSpawn = ChooseRandFish(randValue);
-
-        // Generate a random position within the spawn radius
-        Vector3 randomSpawnPosition = Random.insideUnitCircle * spawnRadius;
-        randomSpawnPosition.z = randomSpawnPosition.y;
-        Vector3 finalSpawnPosition = spawnPoint.position + randomSpawnPosition;
-
-        if (fishToSpawn != null ) { Instantiate(fishToSpawn, finalSpawnPosition, Quaternion.identity);  }
-
+        if (IsHost) {
+            float randValue = Random.Range(0, 1);
+            GameObject fishToSpawn = ChooseRandFish(randValue);
+            Vector3 randomSpawnPosition = Random.insideUnitCircle * spawnRadius;
+            randomSpawnPosition.z = randomSpawnPosition.y;
+            Vector3 finalSpawnPosition = spawnPoint.position + randomSpawnPosition;
+            
+            if (fishToSpawn != null) {
+                GameObject go = Instantiate(fishToSpawn, finalSpawnPosition, Quaternion.identity);
+                go.GetComponent<NetworkObject>().Spawn(true);
+                go.transform.SetParent(boat);
+            }
+        }
     }
 
     private GameObject ChooseRandFish(float randValue) {
