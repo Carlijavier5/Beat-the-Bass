@@ -45,5 +45,8 @@ public class PlayerEntity : Entity {
     private IEnumerator AttackAction() {
         GameObject attack = Instantiate(hitCollider, transform.position + transform.forward * 2, transform.rotation);
         Destroy(attack, 0.5f);
+        yield return new WaitForSeconds(hitDelay);
+        activeHit = null;
+        yield return null;
     }
 }
