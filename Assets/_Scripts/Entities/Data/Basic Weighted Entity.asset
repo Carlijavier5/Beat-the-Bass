@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Basic Weighted Entity
   m_EditorClassIdentifier: 
   displayName: Basic Entity
-  weight: 3
+  weight: 1
