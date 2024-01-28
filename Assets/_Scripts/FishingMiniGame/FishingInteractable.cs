@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public class FishingInteractable : MonoBehaviour
 {
     private bool canFish = false;
     [SerializeField] private FishingManager fishingManager;  
