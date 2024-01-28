@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class PlayerEntity : Entity {
 
+    [SerializeField] private Transform modelTransform;
+    private Vector3 prevPos;
+
     private PlayerData playerData;
     void Awake() {
         playerData = (PlayerData) Data;
         rb = GetComponent<Rigidbody>();
-        //GameManager.Instance.Input.OnMove += HandleInput;
     }
 
     void FixedUpdate() {
@@ -21,5 +23,6 @@ public class PlayerEntity : Entity {
         Vector2 input = GameManager.Instance.Input.MoveVector;
         Vector3 direction = new Vector3(input.x, 0f, input.y) * playerData.moveSpeed;
         Translate(direction);
+        if (rb.velocity.magnitude > 0) modelTransform.transform.rotation = Quaternion.LookRotation(rb.velocity.normalized);
     }
 }

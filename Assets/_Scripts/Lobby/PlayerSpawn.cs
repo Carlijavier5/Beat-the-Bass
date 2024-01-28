@@ -22,10 +22,12 @@ public class PlayerSpawn : NetworkBehaviour {
         PlayerNO.ChangeOwnership(clientID);
     }
 
-    public void InitializePlayer() {
+    public void InitializePlayer(Transform refCamera) {
         if (PlayerNO == null) return;
         PlayerNO.transform.position = shipSpawn.position;
         PlayerNO.transform.SetParent(shipSpawn.GetComponentInParent<Boat>().transform);
+        PlayerNO.transform.eulerAngles = new Vector3(transform.eulerAngles.z,
+                                                     refCamera.eulerAngles.y, transform.eulerAngles.z);
         GameManager.Instance.Input.ToggleMovement(true);
         GameManager.Instance.Input.ToggleInteraction(true);
         Destroy(gameObject);
