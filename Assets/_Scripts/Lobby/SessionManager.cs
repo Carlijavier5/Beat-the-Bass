@@ -25,6 +25,7 @@ public class SessionManager : NetworkBehaviour {
 
     private void Go2Lobby() => StartCoroutine(_Go2Lobby());
     private IEnumerator _Go2Lobby() {
+        GameManager.Instance.PlayMusic("Main");
         lobbyCam.Priority = 20;
         yield return new WaitForSeconds(0.5f);
         startButton.transform.DOMove(new Vector2(startButton.transform.position.x, -1000), 2);

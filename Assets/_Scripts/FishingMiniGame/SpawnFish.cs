@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class SpawnFish : MonoBehaviour
+public class SpawnFish : NetworkBehaviour
 {
     public GameObject[] fishPrefabs;
     public Transform spawnPoint;
@@ -11,11 +12,15 @@ public class SpawnFish : MonoBehaviour
     }
 
     public void SpawnAFish() {
-        float randValue = Random.Range(0, 1);
-        GameObject fishToSpawn = ChooseRandFish(randValue);
+        if (IsHost) {
+            float randValue = Random.Range(0, 1);
+            GameObject fishToSpawn = ChooseRandFish(randValue);
 
-        if (fishToSpawn != null ) { Instantiate(fishToSpawn, spawnPoint.position, Quaternion.identity);  }
-
+            if (fishToSpawn != null) {
+                GameObject go = Instantiate(fishToSpawn, spawnPoint.position, Quaternion.identity);
+                go.GetComponent<NetworkObject>().Spawn(true);
+            }
+        }
     }
 
     private GameObject ChooseRandFish(float randValue) {
