@@ -29,12 +29,15 @@ public class FishingInteractable : MonoBehaviour
 
     private void StartFishing() {
         if (canFish) {
-            playerInArea.CanMove(false);
+            Debug.Log("Start Fishing");
+            playerInArea.CanMove(false);    
+            playerInArea.isFishing = true;
             fishingManager.StartFishing(this);
         }
     }
 
     public void StopFishing() {
         playerInArea.CanMove(true);
+        playerInArea.isFishing = false;
     }
 }
