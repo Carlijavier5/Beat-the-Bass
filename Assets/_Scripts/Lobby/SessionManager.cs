@@ -80,6 +80,8 @@ public class SessionManager : NetworkBehaviour {
         Destroy(anchorSpawns);
         GameManager.Instance.Fade(0);
         SessionTracker.Instance.StartSessionServerRpc();
+        GameManager.Instance.Input.ToggleMovement(true);
+        GameManager.Instance.Input.ToggleInteraction(true);
     }
 
     private void SetupPlayers() {

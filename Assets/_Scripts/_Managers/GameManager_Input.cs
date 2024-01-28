@@ -12,8 +12,8 @@ public partial class GameManager {
         public InputManager(PlayerInput inputMap) {
             InputMap = inputMap;
             InputMap.MenuInput.Enable();
-            ToggleMovement(true);
-            ToggleInteraction(true);
+            //ToggleMovement(true);
+            //ToggleInteraction(true);
             inputMap.InteractionMap.Interact.performed += (callback) => OnInteraction?.Invoke();
             inputMap.InteractionMap.Beat.performed += (callback) => OnBeat?.Invoke();
         }
