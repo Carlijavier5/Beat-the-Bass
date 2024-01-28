@@ -15,6 +15,6 @@ MonoBehaviour:
   displayName: 
   weight: 0.74
   moveInterval: 2
-  flopMagnitude: 5
+  flopMagnitude: 1000
   flopTime: 10
   spawnChance: 0.25
