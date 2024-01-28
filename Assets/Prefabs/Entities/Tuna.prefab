@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 6064669946135217375}
   - component: {fileID: 6283192240255278716}
   - component: {fileID: 1772514139836039135}
+  - component: {fileID: -3143159838575613514}
   m_Layer: 0
   m_Name: Tuna
   m_TagString: Untagged
@@ -414,10 +415,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &2363358556769113904
 MonoBehaviour:
@@ -431,7 +432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 883180764
+  GlobalObjectIdHash: 2208410443
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -480,7 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1
-  SyncPositionY: 0
+  SyncPositionY: 1
   SyncPositionZ: 1
   SyncRotAngleX: 0
   SyncRotAngleY: 0
@@ -524,12 +525,12 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.43
-  m_Height: 1.56
+  m_Radius: 1
+  m_Height: 3
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &1772514139836039135
@@ -553,6 +554,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-3143159838575613514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5138453955905014037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c1159415a5237448341cb6177f4490, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6146605991795027857
 GameObject:
   m_ObjectHideFlags: 0

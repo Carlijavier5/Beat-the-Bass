@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: testFish
   m_EditorClassIdentifier: 
   displayName: 
-  weight: 0.74
+  weight: 1
   moveInterval: 2
-  flopMagnitude: 1000
+  flopMagnitude: 10
   flopTime: 10
   spawnChance: 0.25

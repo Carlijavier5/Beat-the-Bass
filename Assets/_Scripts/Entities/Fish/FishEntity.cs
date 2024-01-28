@@ -25,7 +25,6 @@ public class FishEntity : Entity
     }
 
     private void MoveFish() {
-        Debug.Log("moved");
         Vector3 randDirection = Random.onUnitSphere;
         randDirection.y = 0;
 
