@@ -22,4 +22,8 @@ public class Entity : NetworkBehaviour {
     public void Translate(Vector3 direction) {
         rb.AddRelativeForce(direction);
     }
+
+    public virtual void Ragdoll() {
+        rb.useGravity = true;
+    }
 }

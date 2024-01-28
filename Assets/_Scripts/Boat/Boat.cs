@@ -29,6 +29,7 @@ public class Boat : NetworkBehaviour {
     private void OnTriggerExit(Collider other) {
         Entity entity = other.gameObject.GetComponent<Entity>();
         if (entity != null) objectsOnBoat.Remove(entity);
+        entity.Ragdoll();
     }
     
     private void RotateBoat() {
