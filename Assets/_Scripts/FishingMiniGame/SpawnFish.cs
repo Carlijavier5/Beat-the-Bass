@@ -20,6 +20,7 @@ public class SpawnFish : NetworkBehaviour
             GameObject fishToSpawn = ChooseRandFish(randValue);
             Vector3 randomSpawnPosition = Random.insideUnitCircle * spawnRadius;
             randomSpawnPosition.z = randomSpawnPosition.y;
+            randomSpawnPosition.y = 0;
             Vector3 finalSpawnPosition = spawnPoint.position + randomSpawnPosition;
             
             if (fishToSpawn != null) {
