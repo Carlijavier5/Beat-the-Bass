@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class HitCollider : MonoBehaviour {
@@ -11,11 +12,11 @@ public class HitCollider : MonoBehaviour {
         collider = GetComponent<BoxCollider>();
     }
 
-    public void OnCollisionEnter(Collision other) {
+    public void OnTriggerEnter(Collider other) {
         Transform collided = other.transform;
         Vector3 offset = (collided.position - transform.position).normalized;
-        other.transform.GetComponent<Rigidbody>().AddRelativeForce(offset * hitPower);
         offset = new Vector3(offset.x, 0f, offset.z);
-        Debug.Log(offset.ToString());
+        other.transform.GetComponent<Rigidbody>().AddRelativeForce(offset * hitPower);
+        Debug.Log("we hit something LOL");
     }
 }
