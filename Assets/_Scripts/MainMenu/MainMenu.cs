@@ -20,7 +20,11 @@ public class MainMenu : MonoBehaviour {
 
     private IEnumerator PullUp() {
         anchor.DOAnchorPos(anchor.anchoredPosition + new Vector2(0, rectTransform.sizeDelta.y), pullUpTime).SetEase(Ease.OutBounce);
-        yield return new WaitForSeconds(pullUpTime);
+        yield return new WaitForSeconds(pullUpTime * 1.1f);
         Destroy(gameObject);
+    }
+
+    void OnDisable() {
+        GameManager.Instance.Input.InputMap.MenuInput.StartGame.performed -= GameManager_StartGame;
     }
 }

@@ -7,12 +7,12 @@ using UnityEngine;
 public class SessionManager : NetworkBehaviour {
 
     [SerializeField] private PlayerSpawn[] spawns;
+    [SerializeField] private Cinemachine.CinemachineVirtualCamera boatCam;
+    [SerializeField] private GameObject docks;
+    bool await;
 
     public override void OnNetworkSpawn() {
-        if (!IsHost) {
-            Destroy(gameObject);
-            return;
-        }
+        if (!IsHost) return;
         NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_OnClientConnectedCallback;
         NetworkManager.Singleton.OnClientDisconnectCallback += Singleton_OnClientDisconnectCallback;
     }
@@ -33,6 +33,26 @@ public class SessionManager : NetworkBehaviour {
                 spawns[i].NetworkObject.ChangeOwnership(OwnerClientId);
                 spawns[i].Dispose();
             }
+        }
+    }
+
+    [ClientRpc]
+    public void StartGameClientRpc() => StartCoroutine(_StartGame());
+
+    private IEnumerator _StartGame() {
+        await = true;
+        GameManager.Instance.OnFadeEnd += () => await = false;
+        GameManager.Instance.Fade(1);
+        while (await) yield return null;
+        boatCam.Priority = 15;
+        SetupPlayers();
+        Destroy(docks);
+        GameManager.Instance.Fade(0);
+    }
+
+    private void SetupPlayers() {
+        foreach (PlayerSpawn spawn in spawns) {
+            spawn.InitializePlayer();
         }
     }
 }

@@ -7,9 +7,10 @@ using UnityEngine.UI;
 
 public class NetworkManagerUI : MonoBehaviour {
     [SerializeField] private Button hostBtn;
-
     [SerializeField] private TMPro.TMP_InputField ipField;
     [SerializeField] private Button clientBtn;
+    [SerializeField] private Button startGame;
+    [SerializeField] private SessionManager seshManager;
 
     void Awake() {
         hostBtn.onClick.AddListener(() => {
@@ -19,6 +20,9 @@ public class NetworkManagerUI : MonoBehaviour {
             NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = ipField.text;
             NetworkManager.Singleton.StartClient();
             Debug.LogWarning(ipField.text);
+        });
+        startGame.onClick.AddListener(() => {
+            seshManager.StartGameClientRpc();
         });
     }
 
