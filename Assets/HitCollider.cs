@@ -11,10 +11,10 @@ public class HitCollider : MonoBehaviour {
         collider = GetComponent<BoxCollider>();
     }
 
-    public void OnTriggerEnter(Collider other) {
+    public void OnCollisionEnter(Collision other) {
         Transform collided = other.transform;
         Vector3 offset = (collided.position - transform.position).normalized;
-        other.transform.GetComponent<Rigidbody>().AddForce(offset * hitPower);
-        Debug.Log("collided");
+        other.transform.GetComponent<Rigidbody>().AddRelativeForce(offset * hitPower);
+        Debug.Log(offset.ToString());
     }
 }
