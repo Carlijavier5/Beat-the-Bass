@@ -7,31 +7,54 @@ public class FishEntity : Entity
     private FishData fishData;
     private float timer = 0.0f;
 
-    protected override void Awake() {
-        base.Awake();
-        fishData = (FishData) data;
-    }
+    private bool fishIsMoving = true;
 
-    protected override void FixedUpdate() {
-        base.FixedUpdate();
+    private bool isPickedUp = false;
+
+    void Awake() {
+        fishData = (FishData) data;
     }
 
     void Update() {
         timer += Time.deltaTime;
 
-        if (timer >= fishData.moveInterval) {
+        if (timer >= fishData.moveInterval && fishIsMoving) {
             MoveFish();
             timer = 0.0f;
         }
     }
 
     private void MoveFish() {
+        Debug.Log("moved");
         Vector3 randDirection = Random.onUnitSphere;
         randDirection.y = 0;
 
         Vector3 localDirection = transform.TransformDirection(randDirection);
-        rigidbody.AddRelativeForce(localDirection * fishData.flopMagnitude, ForceMode.Impulse);
+
+        rb.AddRelativeForce(localDirection * fishData.flopMagnitude, ForceMode.Impulse);
     }
 
-    // get direction between two points
+    public int getFlopTime() {
+        return fishData.flopTime;
+    }
+
+    public void StopFlop() {
+        fishIsMoving = false;
+    }
+
+    public float getSpawnProbability() {
+        if (fishData == null) fishData = (FishData) data;
+        return fishData.spawnChance;
+    }
+
+    public void PickUpFish(GameObject player) {
+        isPickedUp = true;
+
+        this.transform.SetParent(player.transform);
+    }
+
+    public void DropFish() {
+        isPickedUp = false;
+        this.transform.SetParent(null);
+    }
 }
