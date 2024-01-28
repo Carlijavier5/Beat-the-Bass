@@ -11,7 +11,6 @@ public class FishEntity : Entity
 
     void Awake() {
         fishData = (FishData) data;
-        rb = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate() {
@@ -33,6 +32,7 @@ public class FishEntity : Entity
         randDirection.y = 0;
 
         Vector3 localDirection = transform.TransformDirection(randDirection);
+
         rb.AddRelativeForce(localDirection * fishData.flopMagnitude, ForceMode.Impulse);
     }
 

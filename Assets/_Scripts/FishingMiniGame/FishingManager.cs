@@ -29,6 +29,11 @@ public class FishingManager : MonoBehaviour
         halfParentHeight = parentRectTransform.rect.height / 2.0f;
         rectSize = 0;
 
+        container.gameObject.SetActive(false);
+    }
+
+    public void StartFishing() {
+        container.gameObject.SetActive(true);
         SpawnGreenArea();
     }
 
@@ -44,14 +49,10 @@ public class FishingManager : MonoBehaviour
         }
 
         if (level > 3) {
-            //this.gameObject.SetActive(false);
             Debug.Log("Game Won");
             // spawn fish n shit
             spawnFishScript.SpawnAFish();
-
-            // reset the game to TEST
-            level = 1;
-            SpawnGreenArea();
+            container.gameObject.SetActive(false);
         }
     }
 
