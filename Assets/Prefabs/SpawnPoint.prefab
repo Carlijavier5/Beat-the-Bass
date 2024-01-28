@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49ba307a9f2fefb43bb7db8497786b20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 506171384173638350, guid: 9be9fa12bcef11645828d967f274098b,
+  playerPrefab: {fileID: 3396459677582227281, guid: a220e5ea65ca1fa4eb3b430c6fc9f0cd,
     type: 3}
   selector: {fileID: 7578159614086388481}
   shipSpawn: {fileID: 0}
