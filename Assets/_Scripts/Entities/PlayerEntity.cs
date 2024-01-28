@@ -11,7 +11,6 @@ using Vector3 = UnityEngine.Vector3;
 public class PlayerEntity : Entity {
 
     [SerializeField] private Transform modelTransform;
-    private Vector3 prevPos;
 
     private PlayerData playerData;
     [SerializeField] private GameObject hitCollider;
