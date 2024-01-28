@@ -24,12 +24,18 @@ public class Boat : NetworkBehaviour {
     private void OnTriggerEnter(Collider other) {
         Entity entity = other.gameObject.GetComponent<Entity>();
         if (entity != null) objectsOnBoat.Add(entity);
+        if (other.GetComponent<FishEntity>() != null) {
+            SessionTracker.Instance.IncreasePointsServerRpc(5);
+        }
     }
 
     private void OnTriggerExit(Collider other) {
         Entity entity = other.gameObject.GetComponent<Entity>();
         if (entity != null) objectsOnBoat.Remove(entity);
         entity.Ragdoll();
+        if (other.GetComponent<FishEntity>() != null) {
+            SessionTracker.Instance.IncreasePointsServerRpc(-5);
+        }
     }
     
     private void RotateBoat() {
