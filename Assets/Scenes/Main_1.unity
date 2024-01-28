@@ -391,7 +391,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -517,6 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishingManager: {fileID: 1170368892}
+  playerInArea: {fileID: 0}
 --- !u!1 &183636103
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 272235247}
   - component: {fileID: 272235248}
+  - component: {fileID: 272235249}
   m_Layer: 0
   m_Name: KillCollider4
   m_TagString: Untagged
@@ -730,12 +732,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 17.96216, y: 9.611611, z: 4.2886896}
   m_Center: {x: -9.153384, y: 4.3058047, z: 9.772098}
+--- !u!114 &272235249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272235246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d583f721814074daf50dbf25363d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3929,6 +3943,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1484082200}
   - component: {fileID: 1484082201}
+  - component: {fileID: 1484082202}
   m_Layer: 0
   m_Name: KillCollider3
   m_TagString: Untagged
@@ -3966,12 +3981,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 17.96216, y: 9.611611, z: 4.2886896}
   m_Center: {x: -9.153384, y: 4.3058047, z: 9.772098}
+--- !u!114 &1484082202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484082199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d583f721814074daf50dbf25363d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1488161087
 GameObject:
   m_ObjectHideFlags: 0
@@ -4048,6 +4075,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1518167734}
   - component: {fileID: 1518167735}
+  - component: {fileID: 1518167736}
   m_Layer: 0
   m_Name: KillCollider2
   m_TagString: Untagged
@@ -4085,12 +4113,24 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.738998, y: 9.611611, z: 25.81364}
   m_Center: {x: -1.0418003, y: 4.3058047, z: -0.9903803}
+--- !u!114 &1518167736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1518167733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24d583f721814074daf50dbf25363d4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1524945718
 GameObject:
   m_ObjectHideFlags: 0
