@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SpawnFish : NetworkBehaviour
 {
+    [SerializeField] private Transform boat;
     public GameObject[] fishPrefabs;
     public Transform spawnPoint;
 
@@ -19,6 +20,7 @@ public class SpawnFish : NetworkBehaviour
             if (fishToSpawn != null) {
                 GameObject go = Instantiate(fishToSpawn, spawnPoint.position, Quaternion.identity);
                 go.GetComponent<NetworkObject>().Spawn(true);
+                go.transform.SetParent(boat);
             }
         }
     }

@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
+using DG.Tweening;
 
 public class SessionTracker : NetworkBehaviour {
     
     [SerializeField] private float sessionDuration;
+    [SerializeField] private Transform[] sessionTrackers;
     public float CurrDuration { get; private set; }
 
     public static SessionTracker Instance { get; private set; }
@@ -15,6 +17,7 @@ public class SessionTracker : NetworkBehaviour {
     void Awake() {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+        foreach (Transform tracker in sessionTrackers) tracker.DOScale(0, 0);
     }
 
     void Update() {
@@ -24,32 +27,15 @@ public class SessionTracker : NetworkBehaviour {
         }
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void StartSessionServerRpc() {
         CurrDuration = sessionDuration;
         sessionOn = true;
+        foreach (Transform tracker in sessionTrackers) tracker.DOScale(1, 0.75f).SetEase(Ease.OutBounce);
     }
 
     [ServerRpc]
     public void IncreasePointsServerRpc(int value) {
         Score.Value += value;
-    }
-}
-
-public class SessionScore : MonoBehaviour {
-    [SerializeField] private TMPro.TextMeshProUGUI text;
-
-    void Update() {
-        text.text = SessionTracker.Instance.Score.Value.ToString();
-    }
-}
-
-public class SessionTimer : MonoBehaviour {
-    [SerializeField] private TMPro.TextMeshProUGUI text;
-
-    void Update() {
-        int mins = (int) SessionTracker.Instance.CurrDuration / 60;
-        int seconds = ((int) SessionTracker.Instance.CurrDuration - mins);
-        text.text = (mins > 9 ? mins : "0" + mins.ToString()) + ":" + (seconds > 9 ? seconds : "0" + seconds);
     }
 }

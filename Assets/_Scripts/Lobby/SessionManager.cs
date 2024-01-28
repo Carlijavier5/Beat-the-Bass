@@ -17,6 +17,7 @@ public class SessionManager : NetworkBehaviour {
     [SerializeField] private Cinemachine.CinemachineVirtualCamera lobbyCam;
     [SerializeField] private Cinemachine.CinemachineVirtualCamera boatCam;
     [SerializeField] private GameObject docks;
+    [SerializeField] private GameObject anchorSpawns;
     bool await;
 
     void Awake() {
@@ -76,7 +77,9 @@ public class SessionManager : NetworkBehaviour {
         boatCam.Priority = 50;
         SetupPlayers();
         Destroy(docks);
+        Destroy(anchorSpawns);
         GameManager.Instance.Fade(0);
+        SessionTracker.Instance.StartSessionServerRpc();
     }
 
     private void SetupPlayers() {
