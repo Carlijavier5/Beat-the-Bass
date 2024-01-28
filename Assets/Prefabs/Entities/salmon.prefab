@@ -372,7 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 701002375
+  GlobalObjectIdHash: 1286911482
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalData: {fileID: 11400000, guid: a449e528ecf0b8a40b655637fd0fc163, type: 2}
-  data: {fileID: 11400000, guid: 7d1d48b0f1dcff443a7dc7c59763e1e6, type: 2}
+  data: {fileID: 11400000, guid: 4f0997836b57597409b4f5246e28b88d, type: 2}
 --- !u!114 &4143896853701814484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,7 +475,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &3548139362005416441
 CapsuleCollider:

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR;
 using Quaternion = UnityEngine.Quaternion;
@@ -23,6 +24,9 @@ public class PlayerEntity : Entity {
     
     private bool canMove = true;
 
+    private bool dead = false;
+    private float respawnTimer = 3f;
+
     void Awake() {
         attackTimer = hitDelay;
         playerData = (PlayerData) Data;
@@ -35,11 +39,33 @@ public class PlayerEntity : Entity {
     }
 
     private void Update() {
-        attackTimer -= Time.deltaTime;
+        float diff = Time.deltaTime;
+        attackTimer -= diff;
+        if (dead) respawnTimer -= diff;
+        HandleRespawn();
+    }
+
+    private void HandleRespawn() {
+        if (dead && respawnTimer <= 0) {
+            dead = false;
+            rb.useGravity = false;
+            CanMove(true);
+            respawnTimer = 3f;
+            transform.position = GameManager.Instance.spawnAnchor.position;
+            Debug.Log("RESPAWNED");
+        }
     }
 
     public void CanMove(bool enableMove) {
         this.canMove = enableMove;
+    }
+
+    public override void Ragdoll() {
+        if (!dead) {
+            base.Ragdoll();
+            CanMove(false);
+            dead = true;
+        }
     }
 
     private void HandleInput() {
