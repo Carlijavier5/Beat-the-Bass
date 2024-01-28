@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerEntity : Entity {
 
     [SerializeField] private Transform modelTransform;
-    private Vector3 prevPos;
 
     private PlayerData playerData;
     void Awake() {
