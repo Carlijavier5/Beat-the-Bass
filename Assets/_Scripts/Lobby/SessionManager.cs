@@ -80,7 +80,7 @@ public class SessionManager : NetworkBehaviour {
 
     private void SetupPlayers() {
         foreach (PlayerSpawn spawn in spawns) {
-            spawn.InitializePlayer();
+            spawn.InitializePlayer(boatCam.transform);
         }
     }
 }
