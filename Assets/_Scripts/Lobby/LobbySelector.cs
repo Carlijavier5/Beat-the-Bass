@@ -2,6 +2,7 @@
 
 public class LobbySelector : MonoBehaviour {
 
+    [SerializeField] private float speed;
     [SerializeField] private float amplitude;
     private Vector3 startPos;
 
