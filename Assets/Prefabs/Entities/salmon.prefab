@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1206998724
+  GlobalObjectIdHash: 4103462246
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e93a84f16b3b841a581d824689339b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalData: {fileID: 0}
+  globalData: {fileID: 11400000, guid: a449e528ecf0b8a40b655637fd0fc163, type: 2}
   data: {fileID: 11400000, guid: 7d1d48b0f1dcff443a7dc7c59763e1e6, type: 2}
 --- !u!114 &4143896853701814484
 MonoBehaviour:
