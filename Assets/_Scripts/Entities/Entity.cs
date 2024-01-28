@@ -20,6 +20,6 @@ public class Entity : NetworkBehaviour {
     }
 
     public void Translate(Vector3 direction) {
-        ///rb.AddRelativeForce(direction);
+        rb.AddRelativeForce(direction);
     }
 }
