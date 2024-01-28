@@ -33,6 +33,7 @@ public class FishingManager : MonoBehaviour
     }
 
     public void StartFishing() {
+        level = 1;
         container.gameObject.SetActive(true);
         SpawnGreenArea();
     }
