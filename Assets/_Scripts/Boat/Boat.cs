@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using Unity.Netcode;
 using UnityEngine;
 
-public class Boat : MonoBehaviour {
+public class Boat : NetworkBehaviour {
 
     [SerializeField] private Vector2 maxDistance;
     [SerializeField] private float angularStabilitySpeed;
@@ -11,23 +11,13 @@ public class Boat : MonoBehaviour {
     [SerializeField] private Vector3 stabilityPoint;
 
     private Vector3 angularSpeed;
-   /// private float rotationSpeed = 100f;
-    ///public Vector3 targetRotation;
-    /// Vector3 originalEulers;
-
-    //private float clampRotationAroundZ = 30f;
-    //private float clampRotationAroundX = 30f;
 
     [SerializeField] private List<Entity> objectsOnBoat = new();
 
     public AnimationCurve moveCurve;
-    //private float animationTimePosition;
-    /*
-    void Start() {
-        originalEulers = transform.eulerAngles;
-    }*/
 
     void FixedUpdate() {
+        return;
         RotateBoat();
     }
 
