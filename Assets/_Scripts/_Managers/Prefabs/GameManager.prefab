@@ -497,7 +497,9 @@ MonoBehaviour:
   mainMusicSource: {fileID: 8126965435910049884}
   secondaryMusicSource: {fileID: 4352047323262397400}
   sfxSource: {fileID: 1024512211303167002}
-  musicSounds: []
+  musicSounds:
+  - name: Main
+    clip: {fileID: 8300000, guid: 389e8bf49886b9b4a90d35e198be1a32, type: 3}
   sfxSounds: []
   transitionRate: 1
   canvasGroup: {fileID: 7168073431283505329}
