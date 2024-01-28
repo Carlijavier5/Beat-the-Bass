@@ -7,13 +7,13 @@ public class FishEntity : Entity
     private FishData fishData;
     private float timer = 0.0f;
 
-    protected override void Awake() {
-        base.Awake();
+    void Awake() {
         fishData = (FishData) data;
+        rb = GetComponent<Rigidbody>();
     }
 
-    protected override void FixedUpdate() {
-        base.FixedUpdate();
+    void FixedUpdate() {
+        
     }
 
     void Update() {
@@ -30,7 +30,11 @@ public class FishEntity : Entity
         randDirection.y = 0;
 
         Vector3 localDirection = transform.TransformDirection(randDirection);
-        rigidbody.AddRelativeForce(localDirection * fishData.flopMagnitude, ForceMode.Impulse);
+        rb.AddRelativeForce(localDirection * fishData.flopMagnitude, ForceMode.Impulse);
+    }
+
+    public float getFlopTime() {
+        return fishData.flopTime;
     }
 
     // get direction between two points
