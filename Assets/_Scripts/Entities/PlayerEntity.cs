@@ -13,6 +13,7 @@ public class PlayerEntity : Entity {
     [SerializeField] private float hitDelay = 1f;
     private IEnumerator activeHit = null;
     private bool canMove = true;
+
     void Awake() {
         playerData = (PlayerData) Data;
         rb = GetComponent<Rigidbody>();
