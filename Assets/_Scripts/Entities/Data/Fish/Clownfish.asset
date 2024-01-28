@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ac0ce57398d8594eab9e74b471339ce, type: 3}
-  m_Name: testFish
+  m_Name: Clownfish
   m_EditorClassIdentifier: 
   displayName: 
   weight: 1
-  moveInterval: 2
-  flopMagnitude: 10
-  flopTime: 10
-  spawnChance: 0.25
+  moveInterval: 1
+  flopMagnitude: 20
+  flopTime: 5
+  spawnChance: 0.2

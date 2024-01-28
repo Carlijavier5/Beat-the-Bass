@@ -3,7 +3,52 @@ guid: 3855737e143d23b4b90a3cc7574457f2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: model_model_Body Material
+    second: {fileID: 2100000, guid: 0e73fd416bb8d854aa4afd36b57709d3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: model_model_Fishing Line
+    second: {fileID: 2100000, guid: 2b48cac6cd312a0419a3617edbde318d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: model_model_Fishing Rod
+    second: {fileID: 2100000, guid: ba304de25706ec94d9e38d1b68be5564, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: model_model_Handle
+    second: {fileID: 2100000, guid: b51dab3ce848a76468885851a65e0a77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: model_model_Hat Material
+    second: {fileID: 2100000, guid: 73c290fb688a0854a97cb997adc3eb85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: model_model_Pants
+    second: {fileID: 2100000, guid: ff9f9c47755580b4c9da72c1036630cf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: model_model_Shirt Material
+    second: {fileID: 2100000, guid: b4b84433a4d51604fa6c5cdddac6c86f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: model_model_hat highlight
+    second: {fileID: 2100000, guid: d07df3976b13f1449ab1ee7b0f9f31e7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: model_model_lambert2
+    second: {fileID: 2100000, guid: 8fae69e275c779e4a9ef6b649ed7b303, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
