@@ -550,6 +550,7 @@ MonoBehaviour:
   container: {fileID: 3337069791890031794}
   bobber: {fileID: 5894245980299214051}
   greenArea: {fileID: 5442581384098251051}
+  currentFishingSpot: {fileID: 0}
 --- !u!114 &3220902035465634954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,7 +563,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3305083386
+  GlobalObjectIdHash: 4256935144
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -582,9 +583,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec20169c93033d143a0746700ad089c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boat: {fileID: 0}
   fishPrefabs:
   - {fileID: 4997109172047367906, guid: 194485f1dae39ae47bb60acba7c60dcc, type: 3}
   - {fileID: 6721377558345066976, guid: 8f0aba3693eff4440935bea1461b82f7, type: 3}
   - {fileID: 6470261243165800627, guid: ada999d98ffee99448fa17dfd7f7e6e9, type: 3}
   - {fileID: 5138453955905014037, guid: 054e4ed3dcd4ec94c8f1483f360f1eb9, type: 3}
   spawnPoint: {fileID: 0}
+  spawnRadius: 0

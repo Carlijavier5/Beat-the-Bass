@@ -16,7 +16,7 @@ public class HitCollider : MonoBehaviour {
         Transform collided = other.transform;
         Vector3 offset = (collided.position - transform.position).normalized;
         offset = new Vector3(offset.x, 0f, offset.z);
-        other.transform.GetComponent<Rigidbody>().AddRelativeForce(offset * hitPower);
-        Debug.Log("we hit something LOL");
+        Rigidbody rb = other.transform.GetComponent<Rigidbody>();
+        if (rb == null) rb.AddRelativeForce(offset * hitPower);
     }
 }

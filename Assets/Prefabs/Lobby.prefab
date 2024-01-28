@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1771388290
+  GlobalObjectIdHash: 2922657099
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 0
   ActiveSceneSynchronization: 0
@@ -65,8 +65,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 476e2d3059e455a4cab4eca0790b7080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startButton: {fileID: 0}
+  exitButton: {fileID: 0}
+  logo: {fileID: 0}
   spawns:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  lobbyCam: {fileID: 0}
+  boatCam: {fileID: 0}
+  docks: {fileID: 0}
+  anchorSpawns: {fileID: 0}
