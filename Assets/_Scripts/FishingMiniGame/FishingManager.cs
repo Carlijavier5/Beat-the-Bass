@@ -20,6 +20,8 @@ public class FishingManager : MonoBehaviour
 
     private SpawnFish spawnFishScript;
 
+    public FishingInteractable currentFishingSpot;
+
     void Start()
     {
         spawnFishScript = GetComponent<SpawnFish>();
@@ -32,7 +34,8 @@ public class FishingManager : MonoBehaviour
         container.gameObject.SetActive(false);
     }
 
-    public void StartFishing() {
+    public void StartFishing(FishingInteractable current) {
+        currentFishingSpot = current;
         level = 1;
         container.gameObject.SetActive(true);
         SpawnGreenArea();
@@ -50,6 +53,7 @@ public class FishingManager : MonoBehaviour
         }
 
         if (level > 3) {
+            currentFishingSpot.StopFishing();
             Debug.Log("Game Won");
             // spawn fish n shit
             spawnFishScript.SpawnAFish();

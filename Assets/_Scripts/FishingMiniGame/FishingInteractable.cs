@@ -5,7 +5,8 @@ using UnityEngine;
 public class FishingInteractable : MonoBehaviour
 {
     private bool canFish = false;
-    [SerializeField] private FishingManager fishingManager;  
+    [SerializeField] private FishingManager fishingManager;
+    public PlayerEntity playerInArea = null;
 
     void Start() {
         GameManager.Instance.Input.OnInteraction += StartFishing;
@@ -14,19 +15,29 @@ public class FishingInteractable : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Player")
         {
+            playerInArea = other.GetComponent<PlayerEntity>();
             canFish = true;
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.tag == "Player") {
+            playerInArea = null;
             canFish = false;
         }
     }
 
     private void StartFishing() {
         if (canFish) {
-            fishingManager.StartFishing();
+            Debug.Log("Start Fishing");
+            playerInArea.CanMove(false);    
+            playerInArea.isFishing = true;
+            fishingManager.StartFishing(this);
         }
+    }
+
+    public void StopFishing() {
+        playerInArea.CanMove(true);
+        playerInArea.isFishing = false;
     }
 }
