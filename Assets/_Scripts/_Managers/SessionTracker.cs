@@ -45,5 +45,6 @@ public class SessionTracker : NetworkBehaviour {
     [ServerRpc]
     public void IncreasePointsServerRpc(int value) {
         Score.Value += value;
+        Debug.Log(Score.Value + " is score");
     }
 }
