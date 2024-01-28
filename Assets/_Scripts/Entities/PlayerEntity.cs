@@ -20,6 +20,7 @@ public class PlayerEntity : Entity {
     private float attackTimer;
     
     private bool canMove = true;
+
     void Awake() {
         attackTimer = hitDelay;
         playerData = (PlayerData) Data;
