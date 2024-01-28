@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boat : MonoBehaviour {
@@ -13,6 +14,8 @@ public class Boat : MonoBehaviour {
     private float clampRotationAroundZ = 30f;
     private float clampRotationAroundX = 30f;
 
+    private List<Entity> objectsOnBoat = new();
+
     void Start() {
         originalEulers = transform.eulerAngles;
     }
@@ -21,21 +24,35 @@ public class Boat : MonoBehaviour {
         RotateBoat();
     }
 
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.GetComponent<Entity>() != null) {
+            objectsOnBoat.Add(other.gameObject.GetComponent<Entity>());
+        }
+        Debug.Log("added object");
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.GetComponent<Entity>() != null) {
+            objectsOnBoat.Remove(other.gameObject.GetComponent<Entity>());
+        }
+        Debug.Log("object removed");
+    }
+
     // based on child coords rotate the boat
     private void RotateBoat() {
         // check if there are children
-        if (transform.childCount > 0) {
+        if (objectsOnBoat.Count > 0) {
             // calc the avg X-Z position of all children
             float totalPositionX = 0f;
             float totalPositionZ = 0f;
             float testWeight = 1f;
             float individualWeightX = 0f;
             float individualWeightZ = 0f;
-            for (int i = 0; i < transform.childCount; ++i) {
-                Vector3 childPosition = transform.GetChild(i).localPosition; 
+            for (int i = 0; i < objectsOnBoat.Count; ++i) {
+                Vector3 objectPosition = objectsOnBoat[i].transform.localPosition; 
                 //calc individual weights (how much to rotate)
-                individualWeightX = childPosition.x * testWeight;
-                individualWeightZ = childPosition.z * testWeight;
+                individualWeightX = objectPosition.x * testWeight;
+                individualWeightZ = objectPosition.z * testWeight;
 
                 totalPositionX += individualWeightX;
                 totalPositionZ += individualWeightZ;
@@ -49,7 +66,7 @@ public class Boat : MonoBehaviour {
 
             // if the tilt value is within a certain range then don't keep rotating the boat
             float currentZTilt = CalculateBoatTilt(currentRotation.z);
-            Debug.Log(currentZTilt);
+            //Debug.Log(currentZTilt);
             if (currentZTilt >= -0.1f && currentZTilt <= 0.1f) {
                 // keep boat steady
                 Debug.Log("steady");

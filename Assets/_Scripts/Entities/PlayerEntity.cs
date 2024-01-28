@@ -13,6 +13,7 @@ public class PlayerEntity : Entity {
 
     protected override void FixedUpdate() {
         base.FixedUpdate();
+        //if (!IsOwner) return;
         HandleInput();
     }
 
