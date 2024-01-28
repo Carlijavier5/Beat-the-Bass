@@ -1,7 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using UnityEngine.XR;
+using Quaternion = UnityEngine.Quaternion;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class PlayerEntity : Entity {
 
@@ -10,9 +15,13 @@ public class PlayerEntity : Entity {
     private PlayerData playerData;
     [SerializeField] private GameObject hitCollider;
     [SerializeField] private float hitDelay = 1f;
-    private IEnumerator activeHit = null;
+    [SerializeField] private float hitDuration = 0.8f;
+    private float attackTimer;
+    
     private bool canMove = true;
+
     void Awake() {
+        attackTimer = hitDelay;
         playerData = (PlayerData) Data;
         rb = GetComponent<Rigidbody>();
         GameManager.Instance.Input.OnBeat += HandleAttack;
@@ -20,6 +29,10 @@ public class PlayerEntity : Entity {
 
     void FixedUpdate() {
         HandleInput();
+    }
+
+    private void Update() {
+        attackTimer -= Time.deltaTime;
     }
 
     public void CanMove(bool enableMove) {
@@ -34,18 +47,20 @@ public class PlayerEntity : Entity {
         if (rb.velocity.magnitude > 0) modelTransform.transform.rotation = Quaternion.LookRotation(rb.velocity.normalized);
     }
 
-    private void HandleAttack() {
-        if (activeHit == null) {
-            activeHit = AttackAction();
-            StartCoroutine(activeHit);
+    public void HandleAttack() {
+        if (attackTimer <= 0 ) {
+            AttackAction();
         }
     }
 
-    private IEnumerator AttackAction() {
-        GameObject attack = Instantiate(hitCollider, transform.position + transform.forward * 2, transform.rotation);
-        Destroy(attack, 0.5f);
-        yield return new WaitForSeconds(hitDelay);
-        activeHit = null;
-        yield return null;
+    private void AttackAction() {
+        if (!IsHost) return;
+        Vector3 colliderTransform = modelTransform.position + modelTransform.forward * 1.5f;
+        colliderTransform = new Vector3(colliderTransform.x, colliderTransform.y + 1, colliderTransform.z);
+        GameObject attack = Instantiate(hitCollider, colliderTransform, modelTransform.rotation);
+        attack.GetComponent<Unity.Netcode.NetworkObject>().Spawn(true);
+        attack.transform.SetParent(transform);
+        Destroy(attack, hitDuration);
+        attackTimer = hitDelay;
     }
 }

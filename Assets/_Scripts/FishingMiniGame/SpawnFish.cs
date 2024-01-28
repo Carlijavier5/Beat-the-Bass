@@ -9,6 +9,8 @@ public class SpawnFish : NetworkBehaviour
     public GameObject[] fishPrefabs;
     public Transform spawnPoint;
 
+    [SerializeField] private float spawnRadius = 0f;
+
     void Start() {
     }
 
@@ -16,9 +18,12 @@ public class SpawnFish : NetworkBehaviour
         if (IsHost) {
             float randValue = Random.Range(0, 1);
             GameObject fishToSpawn = ChooseRandFish(randValue);
-
+            Vector3 randomSpawnPosition = Random.insideUnitCircle * spawnRadius;
+            randomSpawnPosition.z = randomSpawnPosition.y;
+            Vector3 finalSpawnPosition = spawnPoint.position + randomSpawnPosition;
+            
             if (fishToSpawn != null) {
-                GameObject go = Instantiate(fishToSpawn, spawnPoint.position, Quaternion.identity);
+                GameObject go = Instantiate(fishToSpawn, finalSpawnPosition, Quaternion.identity);
                 go.GetComponent<NetworkObject>().Spawn(true);
                 go.transform.SetParent(boat);
             }

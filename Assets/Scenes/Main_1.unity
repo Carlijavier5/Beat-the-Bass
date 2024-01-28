@@ -3062,6 +3062,11 @@ PrefabInstance:
       propertyPath: spawnPoint
       value: 
       objectReference: {fileID: 208267787}
+    - target: {fileID: 6080497690163760441, guid: b4ffcb10165f7ca47bb6a879756dfe61,
+        type: 3}
+      propertyPath: spawnRadius
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8536547458550100096, guid: b4ffcb10165f7ca47bb6a879756dfe61,
         type: 3}
       propertyPath: m_Name

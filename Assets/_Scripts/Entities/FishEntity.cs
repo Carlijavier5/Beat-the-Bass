@@ -9,12 +9,10 @@ public class FishEntity : Entity
 
     private bool fishIsMoving = true;
 
+    private bool isPickedUp = false;
+
     void Awake() {
         fishData = (FishData) data;
-    }
-
-    void FixedUpdate() {
-        
     }
 
     void Update() {
@@ -48,5 +46,14 @@ public class FishEntity : Entity
         return fishData.spawnChance;
     }
 
-    // get direction between two points
+    public void PickUpFish(GameObject player) {
+        isPickedUp = true;
+
+        this.transform.SetParent(player.transform);
+    }
+
+    public void DropFish() {
+        isPickedUp = false;
+        this.transform.SetParent(null);
+    }
 }
