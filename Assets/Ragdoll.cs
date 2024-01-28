@@ -7,8 +7,7 @@ public class Ragdoll : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other) {
         if (other.transform.GetComponent<PlayerEntity>() != null) {
-            other.transform.GetComponent<Rigidbody>().useGravity = true;
-            other
+            other.transform.GetComponent<PlayerEntity>().Ragdoll();
         }
     }
 }
