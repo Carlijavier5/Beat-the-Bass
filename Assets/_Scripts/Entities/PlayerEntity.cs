@@ -48,8 +48,10 @@ public class PlayerEntity : Entity {
     private void HandleRespawn() {
         if (dead && respawnTimer <= 0) {
             dead = false;
+            rb.useGravity = false;
+            CanMove(true);
             respawnTimer = 3f;
-            transform.localPosition = RespawnAnchor.Instance.spawnLoc.position;
+            transform.position = GameManager.Instance.spawnAnchor.position;
             Debug.Log("RESPAWNED");
         }
     }

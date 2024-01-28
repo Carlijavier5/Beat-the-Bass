@@ -8,6 +8,8 @@ public partial class GameManager : MonoBehaviour {
     private static GameManager instance;
     public static GameManager Instance => instance;
 
+    public Transform spawnAnchor;
+
     void Awake() {
         if (instance == null) {
             instance = this;
