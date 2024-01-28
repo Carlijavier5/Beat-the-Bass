@@ -535,9 +535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189f6808ef7ec5149980d5e7beb837fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragConstant: 3.9
+  globalData: {fileID: 0}
   data: {fileID: 11400000, guid: 0cfaf21ce64d14740aa4322600882ae9, type: 2}
-  boat: {fileID: 0}
 --- !u!54 &463466584
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1192,16 +1191,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1466457974549820909, guid: b4ffcb10165f7ca47bb6a879756dfe61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 358.73663
-      objectReference: {fileID: 0}
-    - target: {fileID: 1466457974549820909, guid: b4ffcb10165f7ca47bb6a879756dfe61,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 106.66666
-      objectReference: {fileID: 0}
     - target: {fileID: 4005454349855364738, guid: b4ffcb10165f7ca47bb6a879756dfe61,
         type: 3}
       propertyPath: m_Pivot.x

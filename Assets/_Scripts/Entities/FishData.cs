@@ -7,5 +7,7 @@ public class FishData : EntityData
 {
     public float moveInterval = 1f;
     public float flopMagnitude = 5f;
-    public float flopTime = 10f;
+    public int flopTime = 10;
+
+    public float spawnChance = 0f;
 }
