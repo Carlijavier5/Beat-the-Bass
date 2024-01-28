@@ -57,7 +57,7 @@ public class SessionManager : NetworkBehaviour {
     private void Singleton_OnClientDisconnectCallback(ulong clientID) {
         for (int i = 0; i < spawns.Length; i++) {
             if (spawns[i].OwnerClientId == clientID) {
-                spawns[i].NetworkObject.ChangeOwnership(OwnerClientId);
+                spawns[i].NetworkObject.RemoveOwnership();
                 spawns[i].Dispose();
             }
         }
